@@ -1290,9 +1290,9 @@
                         height: 100%;
                         object-fit: cover;
                         z-index: 1;
-                    " autoplay muted loop playsinline preload="metadata">
-                        <source src="Assets/Videos/Products/EQ Video Wall.webm" type="video/webm">
+                    " autoplay muted loop playsinline preload="auto">
                         <source src="Assets/Videos/Products/EQ Video Wall.mp4" type="video/mp4">
+                        <source src="Assets/Videos/Products/EQ Video Wall.webm" type="video/webm">
                         Your browser does not support the video tag.
                     </video>
                     <div style="
@@ -1347,9 +1347,9 @@
                         height: 100%;
                         object-fit: cover;
                         z-index: 1;
-                    " autoplay muted loop playsinline preload="metadata">
-                        <source src="Assets/Videos/Products/Maytronics.webm" type="video/webm">
+                    " autoplay muted loop playsinline preload="auto">
                         <source src="Assets/Videos/Products/Maytronics.mp4" type="video/mp4">
+                        <source src="Assets/Videos/Products/Maytronics.webm" type="video/webm">
                         Your browser does not support the video tag.
                     </video>
                     <div style="
@@ -1404,9 +1404,9 @@
                         height: 100%;
                         object-fit: cover;
                         z-index: 1;
-                    " autoplay muted loop playsinline preload="metadata">
-                        <source src="Assets/Videos/Products/Mundus_PP.webm" type="video/webm">
+                    " autoplay muted loop playsinline preload="auto">
                         <source src="Assets/Videos/Products/Mundus_PP.mp4" type="video/mp4">
+                        <source src="Assets/Videos/Products/Mundus_PP.webm" type="video/webm">
                         Your browser does not support the video tag.
                     </video>
                     <div style="
@@ -1461,9 +1461,9 @@
                         height: 100%;
                         object-fit: cover;
                         z-index: 1;
-                    " autoplay muted loop playsinline preload="metadata">
-                        <source src="Assets/Videos/Products/Interactive.webm" type="video/webm">
+                    " autoplay muted loop playsinline preload="auto">
                         <source src="Assets/Videos/Products/Interactive.mp4" type="video/mp4">
+                        <source src="Assets/Videos/Products/Interactive.webm" type="video/webm">
                         Your browser does not support the video tag.
                     </video>
                     <div style="
@@ -1518,9 +1518,9 @@
                         height: 100%;
                         object-fit: cover;
                         z-index: 1;
-                    " autoplay muted loop playsinline preload="metadata">
-                        <source src="Assets/Videos/Products/Enso.webm" type="video/webm">
+                    " autoplay muted loop playsinline preload="auto">
                         <source src="Assets/Videos/Products/Enso.mp4" type="video/mp4">
+                        <source src="Assets/Videos/Products/Enso.webm" type="video/webm">
                         Your browser does not support the video tag.
                     </video>
                     <div style="
@@ -1575,9 +1575,9 @@
                         height: 100%;
                         object-fit: cover;
                         z-index: 1;
-                    " autoplay muted loop playsinline preload="metadata">
-                        <source src="Assets/Videos/Products/AR Video.webm" type="video/webm">
+                    " autoplay muted loop playsinline preload="auto">
                         <source src="Assets/Videos/Products/AR Video.mp4" type="video/mp4">
+                        <source src="Assets/Videos/Products/AR Video.webm" type="video/webm">
                         Your browser does not support the video tag.
                     </video>
                     <div style="
@@ -3256,6 +3256,9 @@
                 // Handle video loading errors (format not supported)
                 video.addEventListener('error', function(e) {
                     console.log('Video error:', e);
+                    console.log('Video src:', video.currentSrc || video.src);
+                    console.log('iOS/Safari detected:', /iPad|iPhone|iPod/.test(navigator.userAgent) || /Safari/.test(navigator.userAgent));
+                    
                     // Try to fallback to the next source
                     const nextSource = video.querySelector('source:not([src*=".webm"])');
                     if (nextSource && !video.hasAttribute('data-fallback-tried')) {
@@ -3263,6 +3266,25 @@
                         video.src = nextSource.src;
                         video.load();
                     }
+                });
+
+                // iOS-specific video loading handlers
+                video.addEventListener('loadeddata', function() {
+                    console.log('Video loaded data:', video.currentSrc || video.src);
+                    // Force play on iOS if autoplay fails
+                    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                        video.play().catch(function(error) {
+                            console.log('iOS autoplay failed:', error);
+                        });
+                    }
+                });
+
+                video.addEventListener('canplay', function() {
+                    console.log('Video can play:', video.currentSrc || video.src);
+                });
+
+                video.addEventListener('loadstart', function() {
+                    console.log('Video load start:', video.currentSrc || video.src);
                 });
             });
         });
