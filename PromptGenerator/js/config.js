@@ -4,9 +4,8 @@
  */
 const CONFIG = {
     // Gemini API Configuration
-    // TODO: Add your Gemini API key here
     // Get your API key from: https://makersuite.google.com/app/apikey
-    GEMINI_API_KEY: 'YOUR_API_KEY_HERE',
+    GEMINI_API_KEY: 'AIzaSyBeFe8cXamPq6on7nUDCJ6w00MxuwPNLCY',
 
     // Gemini API endpoint
     GEMINI_API_ENDPOINT: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent',
