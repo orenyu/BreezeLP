@@ -276,6 +276,12 @@ class FormHandler {
             isValid = false;
         }
 
+        const targetAudience = document.getElementById('targetAudience').value;
+        if (!targetAudience) {
+            errors.push('Please select the target audience');
+            isValid = false;
+        }
+
         // Check main messages (all 3 required)
         const mainMessage1 = document.getElementById('mainMessage1').value.trim();
         const mainMessage2 = document.getElementById('mainMessage2').value.trim();
@@ -323,16 +329,24 @@ class FormHandler {
     }
 
     handleSubmit() {
+        console.log('🔄 Form submit triggered');
+
         if (!this.validateForm()) {
+            console.log('❌ Form validation failed');
             return;
         }
 
+        console.log('✅ Form validation passed');
         const formData = this.collectFormData();
-        console.log('Form Data:', formData);
+        console.log('📋 Form Data:', formData);
 
         // Trigger the app to handle submission
         if (window.app) {
+            console.log('✅ App found, calling handleFormSubmission');
             window.app.handleFormSubmission(formData);
+        } else {
+            console.error('❌ window.app is not defined!');
+            alert('Application not initialized. Please refresh the page.');
         }
     }
 
