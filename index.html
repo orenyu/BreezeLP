@@ -84,6 +84,12 @@
             opacity: 0;
             transform: translateY(80px);
         }
+        
+        .solution-pill:hover {
+            transform: translateY(-5px);
+            scale: 1.02;
+            box-shadow: 0 8px 25px rgba(229, 88, 0, 0.4);
+        }
 
         .solution-pill.animate-in {
             opacity: 1;
@@ -341,7 +347,7 @@
 
             /* ===== HERO SECTION ===== */
             .hero-section {
-                padding: 20px !important;
+                padding: 20px 0 !important;
                 margin: 0 0 30px 0 !important;
                 display: block !important;
                 height: auto !important;
@@ -349,32 +355,40 @@
 
             .hero-section div[style*="font-family: 'Plus Jakarta Sans'"] {
                 position: static !important;
-                left: 50px !important;
+                left: auto !important;
                 top: auto !important;
                 transform: none !important;
-                text-align: left !important;
+                text-align: center !important;
                 font-size: 20px !important;
                 line-height: 28px !important;
-                margin: 20px 50px !important;
-                padding: 0 !important;
-                width: calc(100% - 100px) !important;
+                margin: 20px auto !important;
+                padding: 0 20px !important;
+                width: calc(100% - 40px) !important;
             }
 
             .hero-section > div:first-child {
                 position: static !important;
-                width: calc(100% - 100px) !important;
+                width: 100% !important;
                 max-width: none !important;
-                height: 200px !important;
-                margin: 0 50px 20px 50px !important;
+                height: auto !important;
+                margin: 20px 0 !important;
                 left: auto !important;
                 top: auto !important;
             }
 
             .hero-section video {
                 width: 100% !important;
-                height: 100% !important;
-                object-fit: cover !important;
+                height: auto !important;
+                object-fit: contain !important;
                 border-radius: 15px !important;
+                margin: 0 !important;
+            }
+            
+            .hero-section > div:nth-child(2) {
+                width: 100% !important;
+                height: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
 
             /* Solution section mobile CSS moved inside media query below */
@@ -392,7 +406,20 @@
                 left: auto !important;
                 top: auto !important;
                 margin-bottom: 30px !important;
-                text-align: left !important;
+                text-align: center !important;
+            }
+            
+            .products-section > div:first-child span:first-child {
+                font-size: 18px !important;
+                line-height: 22px !important;
+                display: block !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .products-section > div:first-child span:last-child {
+                font-size: 22px !important;
+                line-height: 26px !important;
+                display: block !important;
             }
             
             .products-section > div:last-child {
@@ -423,58 +450,124 @@
                 object-fit: cover !important;
             }
 
+            /* MOBILE: Positioned plates with centered text */
             .product-card > div:last-child,
             .product-card-large > div:last-child {
                 position: absolute !important;
                 bottom: 0 !important;
                 left: 0 !important;
                 right: 0 !important;
-                background: rgba(0, 0, 0, 0.8) !important;
-                color: white !important;
-                padding: 8px 12px !important;
-                font-size: 12px !important;
-                text-align: left !important;
-                text-transform: uppercase !important;
-            }
-
-            /* ===== PROMPT GENERATOR SECTION ===== */
-            section[style*="background: #201E1E"] {
-                height: auto !important;
-                padding: 40px 20px !important;
-                margin: 40px 0 !important;
-            }
-            
-            section[style*="background: #201E1E"] > div {
-                left: 0 !important;
-                top: 0 !important;
-                transform: none !important;
-                position: relative !important;
-                width: 100% !important;
-                gap: 25px !important;
+                height: 24px !important;
+                background: rgba(255, 255, 255, 0.9) !important;
+                border-radius: 0 0 10px 10px !important;
+                z-index: 10 !important;
+                padding: 0 !important;
+                margin: 0 !important;
                 display: flex !important;
-                flex-direction: column !important;
                 align-items: center !important;
+                justify-content: center !important;
             }
             
-            section[style*="background: #201E1E"] > div > div:first-child {
-                font-size: 20px !important;
-                line-height: 28px !important;
+            /* Show and style text inside the plates - single line only */
+            .product-card > div:last-child > div,
+            .product-card-large > div:last-child > div {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                font-size: 7px !important;
+                font-weight: 400 !important;
+                text-transform: uppercase !important;
+                text-align: center !important;
+                line-height: 1 !important;
+                color: black !important;
+                padding: 0 2px !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
                 width: 100% !important;
-                text-align: left !important;
-                margin-bottom: 15px !important;
             }
 
-            section[style*="background: #201E1E"] > div > div:last-child {
-                width: auto !important;
-                padding: 12px 24px !important;
-                font-size: 14px !important;
+            /* ===== PROMPT GENERATOR SECTION MOBILE ===== */
+            @media screen and (max-width: 768px) {
+                section[style*="background: #201E1E"] {
+                    height: auto !important;
+                    padding: 40px 20px !important;
+                    margin: 40px 0 !important;
+                }
+                
+                section[style*="background: #201E1E"] > div {
+                    left: 50% !important;
+                    top: 50% !important;
+                    transform: translate(-50%, -50%) !important;
+                    position: absolute !important;
+                    width: 100% !important;
+                    gap: 25px !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    text-align: center !important;
+                }
+                
+                #prompt-text-mobile {
+                    font-size: 24px !important;
+                    line-height: 30px !important;
+                    width: 100% !important;
+                    max-width: none !important;
+                    text-align: center !important;
+                    margin: 0 auto !important;
+                    padding: 0 20px !important;
+                    box-sizing: border-box !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    justify-content: center !important;
+                    align-items: center !important;
+                }
+
+                #prompt-button-mobile {
+                    margin: 30px auto 0 auto !important;
+                    display: flex !important;
+                    align-self: center !important;
+                }
+
+                section[style*="background: #201E1E"] > div > div:last-child {
+                    width: auto !important;
+                    padding: 12px 24px !important;
+                    font-size: 14px !important;
+                }
             }
 
             /* ===== CHALLENGES SECTION ===== */
-            section#challenges {
-                background: #DDDDDD !important;
-                padding: 30px 20px !important;
-                margin: 0 0 30px 0 !important;
+            @media screen and (max-width: 768px) {
+                section#challenges {
+                    background: #DDDDDD !important;
+                    padding: 30px 20px !important;
+                    margin: 0 0 30px 0 !important;
+                }
+
+                /* Center X icons with their text on mobile */
+                section#challenges div[style*="gap: 20px"][style*="inline-flex"] {
+                    align-items: center !important;
+                    justify-content: flex-start !important;
+                }
+
+                /* Ensure X icon containers are properly aligned and scaled up */
+                section#challenges div[style*="width: 28.026px"] {
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    width: 56px !important;
+                    height: 56px !important;
+                }
+
+                /* Center and scale up the SVG within the icon container */
+                section#challenges svg {
+                    display: block !important;
+                    margin: 0 auto !important;
+                    width: 56px !important;
+                    height: 56px !important;
+                    transform: scale(2) !important;
+                }
             }
 
             section#challenges > div:first-child {
@@ -557,38 +650,91 @@
                 white-space: nowrap !important;
             }
             
-            /* Style "Every Project Is Tailor-Made" section on mobile */
-            #solution > div:last-child {
+            /* Solution Pills Mobile Grid Layout */
+            #solution-pills-container {
                 position: relative !important;
                 left: 0 !important;
                 top: 0 !important;
                 transform: none !important;
                 width: 100% !important;
-                text-align: left !important;
-                margin-top: 40px !important;
-                padding: 0 15px !important;
-                max-width: calc(100vw - 30px) !important;
+                height: auto !important;
+                padding: 0 !important;
+                margin: 20px 0 !important;
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                grid-template-rows: repeat(4, 1fr) !important;
+                gap: 15px !important;
             }
             
-            #solution > div:last-child span:first-child {
-                font-size: 32px !important;
-                line-height: 40px !important;
-                display: block !important;
-                margin-bottom: 15px !important;
-                font-weight: 600 !important;
+            /* Mobile pill styling */
+            #solution-pills-container .solution-pill {
+                padding: 15px 20px !important;
+                min-height: 80px !important;
+                height: auto !important;
             }
             
-            #solution > div:last-child span:last-child {
-                font-size: 24px !important;
-                line-height: 32px !important;
-                display: block !important;
-                font-weight: 500 !important;
+            /* Mobile pill text sizing */
+            #solution-pills-container .solution-pill > div:first-child {
+                font-size: clamp(13px, 3.5vw, 17px) !important;
+                line-height: 1.3 !important;
+                margin-bottom: 5px !important;
+                display: -webkit-box !important;
+                -webkit-line-clamp: 2 !important;
+                -webkit-box-orient: vertical !important;
+                overflow: hidden !important;
+            }
+            
+            #solution-pills-container .solution-pill > div:last-child {
+                font-size: 12px !important;
+                line-height: 1.4 !important;
+                opacity: 0.9 !important;
+            }
+            
+            /* Style "Every Project Is Tailor-Made" section - CLEAN VERSION */
+            #solution > div:last-child {
+                text-align: center !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                margin: 0 auto !important;
+            }
+            
+            #solution > div:last-child div {
+                text-align: center !important;
+                width: 100% !important;
+            }
+            
+            @media screen and (max-width: 768px) {
+                #solution > div:last-child {
+                    bottom: 40px !important;
+                }
+                
+                #solution > div:last-child div:first-child {
+                    font-size: 32px !important;
+                    line-height: 40px !important;
+                    margin-bottom: 15px !important;
+                }
+                
+                #solution > div:last-child div:last-child {
+                    font-size: 24px !important;
+                    line-height: 32px !important;
+                }
             }
             
             /* Reset all solution pills to prevent conflicts */
             #solution .solution-pill {
                 all: unset !important;
                 box-sizing: border-box !important;
+            }
+            
+            /* ELEMENTAL FIX: Direct modification of text containers in solution pills */
+            #solution .solution-pill div[style*="justify-content: center"][style*="flex-direction: column"] {
+                text-align: center !important;
+                align-items: center !important;
             }
             
             #solution > div:nth-child(2) {
@@ -629,14 +775,6 @@
                 grid-template-rows: auto auto !important;
             }
             
-            /* Force hide all background pills */
-            #solution .solution-pill:nth-child(1),
-            #solution .solution-pill:nth-child(3),
-            #solution .solution-pill:nth-child(5),
-            #solution .solution-pill:nth-child(7) {
-                display: none !important;
-                visibility: hidden !important;
-            }
             
             /* Force show and style content pills */
             #solution .solution-pill:nth-child(2),
@@ -1241,7 +1379,7 @@
                     letter-spacing: 0.28px;
                     word-wrap: break-word;
                 ">
-                    There are many ways to showcase a B2B product<br/>
+                    There are many ways<br/>to showcase a B2B product
                 </span>
                 <span style="
                     color: black;
@@ -1302,7 +1440,7 @@
                         display: flex;
                         position: relative;
                         z-index: 2;
-                    ">
+                    " class="product-title-plate">
                         <div style="
                             justify-content: center;
                             display: flex;
@@ -1313,7 +1451,7 @@
                             font-weight: 400;
                             text-transform: uppercase;
                             text-align: center;
-                            line-height: 1.2;
+                            line-height: 1.1;
                             word-wrap: break-word;
                         ">
                             3D WALL
@@ -1359,7 +1497,7 @@
                         display: flex;
                         position: relative;
                         z-index: 2;
-                    ">
+                    " class="product-title-plate">
                         <div style="
                             justify-content: center;
                             display: flex;
@@ -1370,7 +1508,7 @@
                             font-weight: 400;
                             text-transform: uppercase;
                             text-align: center;
-                            line-height: 1.2;
+                            line-height: 1.1;
                             word-wrap: break-word;
                         ">
                             3D POST
@@ -1416,7 +1554,7 @@
                         display: flex;
                         position: relative;
                         z-index: 2;
-                    ">
+                    " class="product-title-plate">
                         <div style="
                             justify-content: center;
                             display: flex;
@@ -1427,7 +1565,7 @@
                             font-weight: 400;
                             text-transform: uppercase;
                             text-align: center;
-                            line-height: 1.2;
+                            line-height: 1.1;
                             word-wrap: break-word;
                         ">
                             3D WEBPAGE
@@ -1473,7 +1611,7 @@
                         display: flex;
                         position: relative;
                         z-index: 2;
-                    ">
+                    " class="product-title-plate">
                         <div style="
                             justify-content: center;
                             display: flex;
@@ -1484,10 +1622,10 @@
                             font-weight: 400;
                             text-transform: uppercase;
                             text-align: center;
-                            line-height: 1.2;
+                            line-height: 1.1;
                             word-wrap: break-word;
                         ">
-                            FOR SALES & TRADE SHOW
+                            FOR SALES &<br>TRADE SHOW
                         </div>
                     </div>
                 </div>
@@ -1530,7 +1668,7 @@
                         display: flex;
                         position: relative;
                         z-index: 2;
-                    ">
+                    " class="product-title-plate">
                         <div style="
                             justify-content: center;
                             display: flex;
@@ -1541,7 +1679,7 @@
                             font-weight: 400;
                             text-transform: uppercase;
                             text-align: center;
-                            line-height: 1.2;
+                            line-height: 1.1;
                             word-wrap: break-word;
                         ">
                             VIDEOS & ANIMATIONS
@@ -1587,7 +1725,7 @@
                         display: flex;
                         position: relative;
                         z-index: 2;
-                    ">
+                    " class="product-title-plate">
                         <div style="
                             justify-content: center;
                             display: flex;
@@ -1598,10 +1736,10 @@
                             font-weight: 400;
                             text-transform: uppercase;
                             text-align: center;
-                            line-height: 1.2;
+                            line-height: 1.1;
                             word-wrap: break-word;
                         ">
-                            KIOSK, XR & APP DEMOS
+                            KIOSK, XR &<br>APP DEMOS
                         </div>
                     </div>
                 </div>
@@ -1624,56 +1762,62 @@
                 transform: translate(-50%, -50%);
                 position: absolute;
                 flex-direction: column;
-                justify-content: flex-start;
+                justify-content: center;
                 align-items: center;
                 gap: 36px;
-                display: inline-flex;
+                display: flex;
+                text-align: center;
             ">
-                <div style="
-                    width: min(1372px, calc(100vw - 80px));
-                    max-width: 1372px;
+                <div id="prompt-text-mobile" style="
+                    width: 100%;
+                    max-width: none;
                     text-align: center;
                     justify-content: center;
                     display: flex;
                     flex-direction: column;
                     color: white;
-                    font-size: 48px;
+                    font-size: clamp(24px, 4vw, 48px);
                     font-family: 'Inter', sans-serif;
                     font-weight: 500;
-                    line-height: 55px;
+                    line-height: clamp(30px, 5vw, 55px);
                     text-transform: capitalize;
-                    word-wrap: break-word;
+                    white-space: nowrap;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                    box-sizing: border-box;
                 ">
-                    Get A Professional Prompt That<br/>Helps You Quickly Build A High-Quality Brief.
+                    Get A Professional Prompt<br/>That Helps You Quickly<br/>Build A High-Quality Brief.
                 </div>
-                <div class="cta-button" style="
-                    padding-left: 75.29px;
-                    padding-right: 75.29px;
-                    padding-top: 19.06px;
-                    padding-bottom: 19.06px;
-                    background: white;
-                    border-radius: 95.31px;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 9.53px;
-                    display: inline-flex;
-                    cursor: pointer;
-                ">
-                    <div style="
+                <a href="PromptGenerator/index.html" style="text-decoration: none;">
+                    <div id="prompt-button-mobile" class="cta-button" style="
+                        padding-left: 75.29px;
+                        padding-right: 75.29px;
+                        padding-top: 19.06px;
+                        padding-bottom: 19.06px;
+                        background: white;
+                        border-radius: 95.31px;
                         justify-content: center;
-                        display: flex;
-                        flex-direction: column;
-                        color: #111111;
-                        font-size: 25.018px;
-                        font-family: 'Inter', sans-serif;
-                        font-weight: 700;
-                        letter-spacing: -1.2509px;
-                        line-height: 27.639px;
-                        word-wrap: break-word;
+                        align-items: center;
+                        gap: 9.53px;
+                        display: inline-flex;
+                        cursor: pointer;
                     ">
-                        Download Now!
+                        <div style="
+                            justify-content: center;
+                            display: flex;
+                            flex-direction: column;
+                            color: #111111;
+                            font-size: 25.018px;
+                            font-family: 'Inter', sans-serif;
+                            font-weight: 700;
+                            letter-spacing: -1.2509px;
+                            line-height: 27.639px;
+                            word-wrap: break-word;
+                        ">
+                            Try Prompt Generator
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 
@@ -1919,317 +2063,173 @@
                 Why
             </div>
             
-            <div style="
+            <!-- Clean Solution Pills Container - Responsive Grid -->
+            <div id="solution-pills-container" style="
                 width: min(1299px, calc(100vw - 40px));
                 max-width: 1299px;
-                height: 196px;
                 left: 50%;
                 top: 428px;
                 transform: translateX(-50%);
                 position: absolute;
                 z-index: 2;
                 padding: 0 20px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 20px;
+                height: 196px;
             ">
-                <!-- First row -->
+                <!-- Pill 1: Partners from day one -->
                 <div class="solution-pill" style="
-                    width: min(617.09px, calc(48% - 10px));
-                    height: 75.76px;
-                    padding-left: 65.88px;
-                    padding-right: 65.88px;
-                    padding-top: 7.96px;
-                    padding-bottom: 7.96px;
-                    left: 0px;
-                    top: 0px;
-                    position: absolute;
                     background: #E55800;
                     border-radius: 68.50px;
-                "></div>
-                <div class="solution-pill" style="
-                    width: min(617.09px, calc(48% - 10px));
-                    height: 75.76px;
-                    padding-left: 65.88px;
-                    padding-right: 65.88px;
-                    padding-top: 7.96px;
-                    padding-bottom: 7.96px;
-                    left: 0px;
-                    top: 0.68px;
-                    position: absolute;
-                    background: rgba(255, 255, 255, 0.20);
-                    border-radius: 68.50px;
+                    padding: 20px 30px;
+                    display: flex;
                     flex-direction: column;
-                    justify-content: flex-start;
+                    justify-content: center;
                     align-items: center;
-                    gap: 21.96px;
-                    display: inline-flex;
+                    text-align: center;
+                    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    cursor: pointer;
                 ">
                     <div style="
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        display: flex;
+                        color: white;
+                        font-size: 31.86px;
+                        font-family: Inter;
+                        font-weight: 600;
+                        line-height: 37.17px;
+                        margin-bottom: 8px;
                     ">
-                        <div style="
-                            justify-content: center;
-                            display: flex;
-                            flex-direction: column;
-                            color: white;
-                            font-size: 31.86px;
-                            font-family: Inter;
-                            font-weight: 600;
-                            line-height: 37.17px;
-                            word-wrap: break-word;
-                        ">
-                            Partners from day one
-                        </div>
-                        <div style="
-                            justify-content: center;
-                            display: flex;
-                            flex-direction: column;
-                            color: white;
-                            font-size: 12.29px;
-                            font-family: Inter;
-                            font-weight: 400;
-                            line-height: 21.95px;
-                            word-wrap: break-word;
-                        ">
-                            we collaborate closely to define the right messages and solutions.
-                        </div>
+                        Partners from day one
+                    </div>
+                    <div style="
+                        color: white;
+                        font-size: 12.29px;
+                        font-family: Inter;
+                        font-weight: 400;
+                        line-height: 21.95px;
+                    ">
+                        we collaborate closely to define the right messages and solutions.
                     </div>
                 </div>
 
+                <!-- Pill 2: Strategic and creative thinking -->
                 <div class="solution-pill" style="
-                    width: min(617.09px, calc(48% - 10px));
-                    height: 75.76px;
-                    padding-left: 65.88px;
-                    padding-right: 65.88px;
-                    padding-top: 7.96px;
-                    padding-bottom: 7.96px;
-                    left: 649.09px;
-                    top: 0px;
-                    position: absolute;
                     background: #E55800;
                     border-radius: 68.50px;
-                "></div>
-                <div class="solution-pill" style="
-                    width: min(617.09px, calc(48% - 10px));
-                    height: 75.76px;
-                    padding-left: 65.88px;
-                    padding-right: 65.88px;
-                    padding-top: 7.96px;
-                    padding-bottom: 7.96px;
-                    left: 649.09px;
-                    top: 0.68px;
-                    position: absolute;
-                    background: rgba(255, 255, 255, 0.20);
-                    border-radius: 68.50px;
+                    padding: 20px 30px;
+                    display: flex;
                     flex-direction: column;
-                    justify-content: flex-start;
+                    justify-content: center;
                     align-items: center;
-                    gap: 21.96px;
-                    display: inline-flex;
+                    text-align: center;
+                    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    cursor: pointer;
                 ">
                     <div style="
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        display: flex;
+                        color: white;
+                        font-size: 31.86px;
+                        font-family: Inter;
+                        font-weight: 600;
+                        line-height: 37.17px;
+                        margin-bottom: 8px;
                     ">
-                        <div style="
-                            justify-content: center;
-                            display: flex;
-                            flex-direction: column;
-                            color: white;
-                            font-size: 31.86px;
-                            font-family: Inter;
-                            font-weight: 600;
-                            line-height: 37.17px;
-                            word-wrap: break-word;
-                        ">
-                            Strategic and creative thinking
-                        </div>
-                        <div style="
-                            justify-content: center;
-                            display: flex;
-                            flex-direction: column;
-                            color: white;
-                            font-size: 12.29px;
-                            font-family: Inter;
-                            font-weight: 400;
-                            line-height: 21.95px;
-                            word-wrap: break-word;
-                        ">
-                            we deeply understand your product and recommend the best approach.
-                        </div>
+                        Strategic and creative thinking
+                    </div>
+                    <div style="
+                        color: white;
+                        font-size: 12.29px;
+                        font-family: Inter;
+                        font-weight: 400;
+                        line-height: 21.95px;
+                    ">
+                        we deeply understand your product and recommend the best approach.
                     </div>
                 </div>
 
-                <!-- Second row -->
+                <!-- Pill 3: A clear and guided process -->
                 <div class="solution-pill" style="
-                    width: min(617.09px, calc(48% - 10px));
-                    height: 75.76px;
-                    padding-left: 65.88px;
-                    padding-right: 65.88px;
-                    padding-top: 7.96px;
-                    padding-bottom: 7.96px;
-                    left: 0px;
-                    top: 101.45px;
-                    position: absolute;
                     background: #E55800;
                     border-radius: 68.50px;
-                "></div>
-                <div class="solution-pill" style="
-                    width: min(617.09px, calc(48% - 10px));
-                    height: 75.76px;
-                    padding-left: 65.88px;
-                    padding-right: 65.88px;
-                    padding-top: 7.96px;
-                    padding-bottom: 7.96px;
-                    left: 0px;
-                    top: 102.13px;
-                    position: absolute;
-                    background: rgba(255, 255, 255, 0.20);
-                    border-radius: 68.50px;
+                    padding: 20px 30px;
+                    display: flex;
                     flex-direction: column;
-                    justify-content: flex-start;
+                    justify-content: center;
                     align-items: center;
-                    gap: 21.96px;
-                    display: inline-flex;
+                    text-align: center;
+                    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    cursor: pointer;
                 ">
                     <div style="
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        display: flex;
+                        color: white;
+                        font-size: 31.86px;
+                        font-family: Inter;
+                        font-weight: 600;
+                        line-height: 37.17px;
+                        margin-bottom: 8px;
                     ">
-                        <div style="
-                            justify-content: center;
-                            display: flex;
-                            flex-direction: column;
-                            color: white;
-                            font-size: 31.86px;
-                            font-family: Inter;
-                            font-weight: 600;
-                            line-height: 37.17px;
-                            word-wrap: break-word;
-                        ">
-                            A clear and guided process
-                        </div>
-                        <div style="
-                            justify-content: center;
-                            display: flex;
-                            flex-direction: column;
-                            color: white;
-                            font-size: 12.29px;
-                            font-family: Inter;
-                            font-weight: 400;
-                            line-height: 21.95px;
-                            word-wrap: break-word;
-                        ">
-                            we simplify complex workflows and support you every step of the way.
-                        </div>
+                        A clear and guided process
+                    </div>
+                    <div style="
+                        color: white;
+                        font-size: 12.29px;
+                        font-family: Inter;
+                        font-weight: 400;
+                        line-height: 21.95px;
+                    ">
+                        we simplify complex workflows and support you every step of the way.
                     </div>
                 </div>
 
+                <!-- Pill 4: 15+ years of B2B experience -->
                 <div class="solution-pill" style="
-                    width: min(617.09px, calc(48% - 10px));
-                    height: 75.76px;
-                    padding-left: 65.88px;
-                    padding-right: 65.88px;
-                    padding-top: 7.96px;
-                    padding-bottom: 7.96px;
-                    left: 649.09px;
-                    top: 102.45px;
-                    position: absolute;
                     background: #E55800;
                     border-radius: 68.50px;
-                "></div>
-                <div class="solution-pill" style="
-                    width: min(617.09px, calc(48% - 10px));
-                    height: 75.76px;
-                    padding-left: 65.88px;
-                    padding-right: 65.88px;
-                    padding-top: 7.96px;
-                    padding-bottom: 7.96px;
-                    left: 649.09px;
-                    top: 103.13px;
-                    position: absolute;
-                    background: rgba(255, 255, 255, 0.20);
-                    border-radius: 68.50px;
+                    padding: 20px 30px;
+                    display: flex;
                     flex-direction: column;
-                    justify-content: flex-start;
+                    justify-content: center;
                     align-items: center;
-                    gap: 21.96px;
-                    display: inline-flex;
+                    text-align: center;
+                    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    cursor: pointer;
                 ">
                     <div style="
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        display: flex;
+                        color: white;
+                        font-size: 31.86px;
+                        font-family: Inter;
+                        font-weight: 600;
+                        line-height: 37.17px;
+                        margin-bottom: 8px;
                     ">
-                        <div style="
-                            justify-content: center;
-                            display: flex;
-                            flex-direction: column;
-                            color: white;
-                            font-size: 31.86px;
-                            font-family: Inter;
-                            font-weight: 600;
-                            line-height: 37.17px;
-                            word-wrap: break-word;
-                        ">
-                            15+ years of B2B experience
-                        </div>
-                        <div style="
-                            justify-content: center;
-                            display: flex;
-                            flex-direction: column;
-                            color: white;
-                            font-size: 12.29px;
-                            font-family: Inter;
-                            font-weight: 400;
-                            line-height: 21.95px;
-                            word-wrap: break-word;
-                        ">
-                            delivering impactful content that works for launches, trade shows, and campaigns.
-                        </div>
+                        15+ years of B2B experience
+                    </div>
+                    <div style="
+                        color: white;
+                        font-size: 12.29px;
+                        font-family: Inter;
+                        font-weight: 400;
+                        line-height: 21.95px;
+                    ">
+                        delivering impactful content that works for launches, trade shows, and campaigns.
                     </div>
                 </div>
             </div>
             
             <div style="
-                left: 50%;
-                top: 731px;
-                transform: translateX(-50%);
+                width: 100%;
                 position: absolute;
+                bottom: 80px;
+                left: 0;
                 text-align: center;
-                justify-content: center;
-                display: flex;
-                flex-direction: column;
                 z-index: 2;
             ">
-                <span style="
-                    color: white;
-                    font-size: 40px;
-                    font-family: Inter;
-                    font-weight: 400;
-                    text-transform: capitalize;
-                    line-height: 55px;
-                    word-wrap: break-word;
-                ">
+                <div style="color: white; font-size: 40px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 55px; margin-bottom: 10px;">
                     Every project is tailor-made
-                </span>
-                <span style="
-                    color: white;
-                    font-size: 32px;
-                    font-family: Inter;
-                    font-weight: 400;
-                    text-transform: capitalize;
-                    line-height: 45px;
-                    word-wrap: break-word;
-                ">
+                </div>
+                <div style="color: white; font-size: 32px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 45px;">
                     co-created, clear, and delivered on time.
-                </span>
+                </div>
             </div>
         </section>
 
@@ -2907,50 +2907,6 @@
             solutionObserver.observe(solutionSection);
         }
         
-        // EMERGENCY iPhone 16 Pro Layout Fix
-        function fixiPhoneLayout() {
-            const isIPhone = /iPhone/.test(navigator.userAgent);
-            const isIPhone16Pro = window.innerWidth === 430 || (window.innerWidth >= 375 && window.innerWidth <= 430);
-            
-            if (isIPhone && isIPhone16Pro) {
-                console.log('iPhone detected, applying emergency layout fix...');
-                
-                const container = document.querySelector('#solution > div:nth-child(3)');
-                if (container) {
-                    container.style.setProperty('display', 'flex', 'important');
-                    container.style.setProperty('flex-wrap', 'wrap', 'important');
-                    container.style.setProperty('justify-content', 'space-between', 'important');
-                    container.style.setProperty('gap', '10px', 'important');
-                    container.style.setProperty('padding', '0 20px', 'important');
-                }
-                
-                const pills = document.querySelectorAll('#solution .solution-pill:nth-child(2), #solution .solution-pill:nth-child(4), #solution .solution-pill:nth-child(6), #solution .solution-pill:nth-child(8)');
-                pills.forEach((pill, index) => {
-                    pill.style.setProperty('position', 'relative', 'important');
-                    pill.style.setProperty('left', '0', 'important');
-                    pill.style.setProperty('top', '0', 'important');
-                    pill.style.setProperty('transform', 'none', 'important');
-                    pill.style.setProperty('width', 'calc(50% - 5px)', 'important');
-                    pill.style.setProperty('max-width', 'calc(50% - 5px)', 'important');
-                    pill.style.setProperty('flex', '0 0 calc(50% - 5px)', 'important');
-                    pill.style.setProperty('min-height', '80px', 'important');
-                    pill.style.setProperty('margin', '0', 'important');
-                    pill.style.setProperty('padding', '12px 8px', 'important');
-                    pill.style.setProperty('background', '#FF7D29', 'important');
-                    pill.style.setProperty('border-radius', '25px', 'important');
-                    pill.style.setProperty('display', 'flex', 'important');
-                    pill.style.setProperty('flex-direction', 'column', 'important');
-                    pill.style.setProperty('justify-content', 'center', 'important');
-                    pill.style.setProperty('align-items', 'center', 'important');
-                    pill.style.setProperty('text-align', 'center', 'important');
-                    pill.style.setProperty('box-sizing', 'border-box', 'important');
-                });
-            }
-        }
-        
-        // Run fix after DOM loads and on resize
-        setTimeout(fixiPhoneLayout, 100);
-        window.addEventListener('resize', fixiPhoneLayout);
 
         // Product frame hover animations
         const productCards = document.querySelectorAll('.product-card, .product-card-large');
@@ -3278,45 +3234,13 @@
             }
         }
         
-        // Fix "Every Project Is Tailor-Made" and "Co-Created, Clear, And Delivered On Time" line breaks on mobile
-        function updateSolutionBottomText() {
-            if (window.innerWidth <= 768) {
-                // Fix first part: "Every Project Is Tailor-Made"
-                const firstTextContainer = document.querySelector('#solution > div:last-child span:first-child');
-                if (firstTextContainer && firstTextContainer.textContent.includes('Every project is tailor-made')) {
-                    firstTextContainer.textContent = 'Every Project\nIs Tailor-Made';
-                    firstTextContainer.style.whiteSpace = 'pre-line';
-                }
-                
-                // Fix second part: "Co-Created, Clear, And Delivered On Time"
-                const secondTextContainer = document.querySelector('#solution > div:last-child span:last-child');
-                if (secondTextContainer && secondTextContainer.textContent.includes('co-created, clear, and delivered on time')) {
-                    secondTextContainer.textContent = 'Co-Created, Clear,\nAnd Delivered On Time.';
-                    secondTextContainer.style.whiteSpace = 'pre-line';
-                }
-            } else {
-                // Reset to original desktop text
-                const firstTextContainer = document.querySelector('#solution > div:last-child span:first-child');
-                if (firstTextContainer && firstTextContainer.textContent.includes('Every Project')) {
-                    firstTextContainer.textContent = 'Every project is tailor-made';
-                    firstTextContainer.style.whiteSpace = 'normal';
-                }
-                
-                const secondTextContainer = document.querySelector('#solution > div:last-child span:last-child');
-                if (secondTextContainer && secondTextContainer.textContent.includes('Co-Created, Clear,')) {
-                    secondTextContainer.textContent = 'co-created, clear, and delivered on time.';
-                    secondTextContainer.style.whiteSpace = 'normal';
-                }
-            }
-        }
+        // Clean solution text - no longer needed with new structure
         
         // Run on page load
         updateSolutionTitle();
-        updateSolutionBottomText();
         
         // Run on window resize
         window.addEventListener('resize', updateSolutionTitle);
-        window.addEventListener('resize', updateSolutionBottomText);
     </script>
 </body>
 </html>

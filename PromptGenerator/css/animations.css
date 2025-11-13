@@ -1,0 +1,404 @@
+/* ===================================
+   ANIMATIONS & TRANSITIONS
+   =================================== */
+
+/* ===== LOADING ANIMATIONS ===== */
+
+/* Spinner Animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pulse Animation for Loading Text */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Fade In/Out */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Slide Up */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide Down */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== ANIMATED CLASSES ===== */
+
+.fade-in {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.4s ease forwards;
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease forwards;
+}
+
+.slide-down {
+    animation: slideDown 0.3s ease forwards;
+}
+
+.scale-in {
+    animation: scaleIn 0.4s ease forwards;
+}
+
+/* ===== LOADING STATE ANIMATIONS ===== */
+
+/* Loading Text Cycle */
+.loading-text-change {
+    animation: textChange 2s ease-in-out;
+}
+
+@keyframes textChange {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Enhanced Loading Spinner */
+.loading-spinner {
+    animation: spin 1s linear infinite;
+    position: relative;
+}
+
+.loading-spinner::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 3px solid transparent;
+    border-top-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite reverse;
+}
+
+/* ===== BUTTON ANIMATIONS ===== */
+
+/* Success Checkmark Animation */
+@keyframes checkmark {
+    0% {
+        stroke-dashoffset: 50;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.success-checkmark {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: checkmark 0.5s ease forwards;
+}
+
+/* Button Press Effect */
+.button-press {
+    animation: buttonPress 0.2s ease;
+}
+
+@keyframes buttonPress {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+}
+
+/* ===== FORM ANIMATIONS ===== */
+
+/* Input Focus Glow */
+input:focus,
+select:focus,
+textarea:focus {
+    animation: focusGlow 0.3s ease;
+}
+
+@keyframes focusGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 125, 41, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 3px rgba(255, 125, 41, 0.2);
+    }
+}
+
+/* Chip Add Animation */
+.chip-add {
+    animation: chipAdd 0.3s ease;
+}
+
+@keyframes chipAdd {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-5px);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Chip Remove Animation */
+.chip-remove {
+    animation: chipRemove 0.2s ease forwards;
+}
+
+@keyframes chipRemove {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+/* ===== STATE TRANSITION ANIMATIONS ===== */
+
+/* Initial State → Loading State */
+.state-transition-out {
+    animation: fadeOut 0.4s ease forwards;
+}
+
+.state-transition-in {
+    animation: fadeIn 0.4s ease 0.2s forwards;
+    opacity: 0;
+}
+
+/* Loading State → Result State */
+.result-appear {
+    animation: resultAppear 0.6s ease forwards;
+}
+
+@keyframes resultAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===== TYPEWRITER EFFECT (Optional for Prompt) ===== */
+
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--orange-primary);
+    white-space: nowrap;
+    animation:
+        typing 3.5s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: var(--orange-primary);
+    }
+}
+
+/* ===== SHAKE ANIMATION (for errors) ===== */
+
+.shake {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* ===== FLOATING ANIMATION (for bulb image) ===== */
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ===== SMOOTH TRANSITIONS ===== */
+
+.smooth-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== HOVER LIFT EFFECT ===== */
+
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===== GRADIENT ANIMATION (Background) ===== */
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-animated {
+    background: linear-gradient(270deg, var(--orange-primary), #FF9D5C, var(--orange-primary));
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* ===== LOADING DOTS ANIMATION ===== */
+
+.loading-dots::after {
+    content: '.';
+    animation: loadingDots 1.5s steps(4, end) infinite;
+}
+
+@keyframes loadingDots {
+    0%, 20% {
+        content: '.';
+    }
+    40% {
+        content: '..';
+    }
+    60%, 100% {
+        content: '...';
+    }
+}
+
+/* ===== PROGRESS BAR ANIMATION ===== */
+
+.progress-bar {
+    width: 0%;
+    height: 4px;
+    background-color: var(--orange-primary);
+    animation: progressBar 4s ease-out forwards;
+}
+
+@keyframes progressBar {
+    0% {
+        width: 0%;
+    }
+    25% {
+        width: 30%;
+    }
+    50% {
+        width: 60%;
+    }
+    75% {
+        width: 85%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* ===== REDUCE MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Generator - Breeze Animation</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Main Container: 1080px -->
+    <div class="container">
+
+        <!-- Complete Layout Grid: Title + Form + Image -->
+        <div class="main-grid">
+
+            <!-- Title spans first two columns -->
+            <header class="header">
+                <h1 class="title">Prompt Generator</h1>
+            </header>
+
+            <form id="promptForm" class="prompt-form">
+
+            <!-- Left Form Column -->
+            <div class="form-column-left">
+
+                    <!-- Field 1: Your Product Field -->
+                    <div class="form-field">
+                        <label for="productField" class="field-label">Your Product Field</label>
+                        <select id="productField" name="productField" class="field-select" required>
+                            <option value="">Select Industry</option>
+                            <option value="MedTech">MedTech</option>
+                            <option value="AgTech">AgTech</option>
+                            <option value="High-Tech">High-Tech</option>
+                            <option value="Industrial">Industrial</option>
+                            <option value="Military">Military</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <input type="text" id="productFieldOther" class="field-input other-input hidden" placeholder="Please specify...">
+                    </div>
+
+                    <!-- Field 2: Describe your product shortly -->
+                    <div class="form-field">
+                        <label for="productDescription" class="field-label">Describe your product shortly</label>
+                        <div class="textarea-container">
+                            <textarea id="productDescription" name="productDescription" class="field-textarea" maxlength="150" placeholder="One sentence description..." required></textarea>
+                            <span class="char-count">0/150</span>
+                        </div>
+                    </div>
+
+                    <!-- Field 3: Up to 3 Main benefits product -->
+                    <div class="form-field">
+                        <label for="mainBenefits" class="field-label">Up to 3 Main benefits product</label>
+                        <div class="multiselect-wrapper">
+                            <div class="multiselect-trigger" id="mainBenefitsTrigger">
+                                <span class="multiselect-placeholder">Select Benefit</span>
+                                <span class="multiselect-arrow">▼</span>
+                            </div>
+                            <div class="multiselect-options hidden" id="mainBenefitsOptions">
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="temp1" class="option-checkbox"> temp1
+                                </label>
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="temp2" class="option-checkbox"> temp2
+                                </label>
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="temp3" class="option-checkbox"> temp3
+                                </label>
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="temp4" class="option-checkbox"> temp4
+                                </label>
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="temp5" class="option-checkbox"> temp5
+                                </label>
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="Other" class="option-checkbox"> Other
+                                </label>
+                            </div>
+                        </div>
+                        <input type="text" id="mainBenefitsOther" class="field-input other-input hidden" placeholder="Please specify...">
+                    </div>
+
+                    <!-- Field 4: Up to 3 Secondary benefits product -->
+                    <div class="form-field">
+                        <label for="secondaryBenefits" class="field-label">Up to 3 Secondary benefits product</label>
+                        <div class="multiselect-wrapper">
+                            <div class="multiselect-trigger" id="secondaryBenefitsTrigger">
+                                <span class="multiselect-placeholder">Select Benefit</span>
+                                <span class="multiselect-arrow">▼</span>
+                            </div>
+                            <div class="multiselect-options hidden" id="secondaryBenefitsOptions">
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="temp1" class="option-checkbox"> temp1
+                                </label>
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="temp2" class="option-checkbox"> temp2
+                                </label>
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="temp3" class="option-checkbox"> temp3
+                                </label>
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="temp4" class="option-checkbox"> temp4
+                                </label>
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="temp5" class="option-checkbox"> temp5
+                                </label>
+                                <label class="multiselect-option">
+                                    <input type="checkbox" value="Other" class="option-checkbox"> Other
+                                </label>
+                            </div>
+                        </div>
+                        <input type="text" id="secondaryBenefitsOther" class="field-input other-input hidden" placeholder="Please specify...">
+                    </div>
+
+                    <!-- Field 5: Challenges -->
+                    <div class="form-field">
+                        <label for="challenges" class="field-label">Challenges</label>
+                        <div class="textarea-container">
+                            <textarea id="challenges" name="challenges" class="field-textarea" maxlength="150" placeholder=""></textarea>
+                            <span class="char-count">0/150</span>
+                        </div>
+                    </div>
+
+            </div>
+
+            <!-- Right Form Column -->
+            <div class="form-column-right">
+
+                    <!-- Field 6: What is the primary goal of the content -->
+                    <div class="form-field">
+                        <label for="primaryGoal" class="field-label">What is the primary goal of the content</label>
+                        <select id="primaryGoal" name="primaryGoal" class="field-select" required>
+                            <option value="">Select Primary Goal</option>
+                            <option value="Product launch">Product launch</option>
+                            <option value="Brand awareness">Brand awareness</option>
+                            <option value="Explain complex technology">Explain complex technology</option>
+                            <option value="Investor pitch">Investor pitch</option>
+                            <option value="Increase sales">Increase sales</option>
+                        </select>
+                    </div>
+
+                    <!-- Field 7: Who is the Target Audience? -->
+                    <div class="form-field">
+                        <label for="targetAudience" class="field-label">Who is the Target Audience?</label>
+                        <select id="targetAudience" name="targetAudience" class="field-select" required>
+                            <option value="">Select Target Audience</option>
+                            <option value="Military">Military</option>
+                            <option value="temp1">temp1</option>
+                            <option value="temp2">temp2</option>
+                            <option value="temp3">temp3</option>
+                            <option value="temp4">temp4</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <input type="text" id="targetAudienceOther" class="field-input other-input hidden" placeholder="Please specify...">
+                    </div>
+
+                    <!-- Field 8: 3 Main messages -->
+                    <div class="form-field">
+                        <label class="field-label">3 Main messages</label>
+                        <input type="text" id="mainMessage1" name="mainMessage1" class="field-input" maxlength="150" placeholder="message" required>
+                        <input type="text" id="mainMessage2" name="mainMessage2" class="field-input message-spacing" maxlength="150" placeholder="message" required>
+                        <input type="text" id="mainMessage3" name="mainMessage3" class="field-input message-spacing" maxlength="150" placeholder="message" required>
+                    </div>
+
+                    <!-- Field 9: 3 Secondary messages -->
+                    <div class="form-field">
+                        <label class="field-label">3 Secondary messages</label>
+                        <input type="text" id="secondaryMessage1" name="secondaryMessage1" class="field-input" maxlength="150" placeholder="message">
+                        <input type="text" id="secondaryMessage2" name="secondaryMessage2" class="field-input message-spacing" maxlength="150" placeholder="message">
+                        <input type="text" id="secondaryMessage3" name="secondaryMessage3" class="field-input message-spacing" maxlength="150" placeholder="message">
+                    </div>
+
+                    <!-- Field 10: Website Link -->
+                    <div class="form-field">
+                        <label for="websiteLink" class="field-label">Website Link</label>
+                        <input type="url" id="websiteLink" name="websiteLink" class="field-input" placeholder="Link here">
+                    </div>
+
+            </div>
+
+            <!-- Submit Button (Spans Both Form Columns) -->
+            <div class="form-submit-wrapper">
+                <button type="submit" class="submit-btn">Generate Prompt</button>
+            </div>
+
+            </form>
+
+            <!-- Third Column: Bulb Image -->
+            <div class="image-column">
+                <div class="bulb-container">
+                    <img src="images/Bulb.jpg" alt="Breeze Animation Lightbulb" class="bulb-image">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text" id="loadingText">Analyzing your product...</p>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="resultModal" class="modal hidden">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Your Generated Prompt</h2>
+                <button id="closeModal" class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea id="generatedPrompt" class="generated-prompt" readonly></textarea>
+            </div>
+            <div class="modal-actions">
+                <button id="copyButton" class="action-btn primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy to Clipboard
+                </button>
+                <button id="downloadButton" class="action-btn secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download JSON
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/config.js"></script>
+    <script src="js/formHandler.js"></script>
+    <script src="js/apiClient.js"></script>
+    <script src="js/outputHandler.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
