@@ -1,0 +1,50 @@
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+*.env
+PromptGenerator/backend/.env
+PromptGenerator/backend/.env.*
+
+# Dependencies
+node_modules/
+PromptGenerator/backend/node_modules/
+package-lock.json
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build outputs
+dist/
+build/
+*.min.js
+*.min.css
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
+
+# Windows artifacts
+nul
+PromptGenerator/nul
+
+# Git files
+*.orig
