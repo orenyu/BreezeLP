@@ -532,6 +532,16 @@ body {
     height: 20px;
 }
 
+/* Loading spinner styling */
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    border: 6px solid #F5F5F5;
+    border-top-color: #EB6601;
+    border-radius: 50%;
+}
+
 /* Loading text in loading modal */
 .loading-text {
     text-align: center;

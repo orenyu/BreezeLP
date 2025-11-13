@@ -1,16 +1,12 @@
 /* ===================================
    MAIN APPLICATION
-   Coordinates all components and manages state
+   Coordinates all components and manages modals
    =================================== */
 
 class App {
     constructor() {
-        this.currentState = 'initial'; // initial, loading, result
-        this.states = {
-            initial: document.getElementById('initialState'),
-            loading: document.getElementById('loadingState'),
-            result: document.getElementById('resultState')
-        };
+        this.loadingModal = document.getElementById('loadingModal');
+        this.resultModal = document.getElementById('resultModal');
 
         this.loadingTexts = [
             'Analyzing your product...',
@@ -32,18 +28,34 @@ class App {
 
     setupEventListeners() {
         // Copy button
-        document.getElementById('copyButton').addEventListener('click', () => {
-            outputHandler.copyToClipboard();
-        });
+        const copyButton = document.getElementById('copyButton');
+        if (copyButton) {
+            copyButton.addEventListener('click', () => {
+                outputHandler.copyToClipboard();
+            });
+        }
 
         // Download button
-        document.getElementById('downloadButton').addEventListener('click', () => {
-            outputHandler.downloadJSON();
-        });
+        const downloadButton = document.getElementById('downloadButton');
+        if (downloadButton) {
+            downloadButton.addEventListener('click', () => {
+                outputHandler.downloadJSON();
+            });
+        }
 
-        // New Prompt button
-        document.getElementById('newPromptButton').addEventListener('click', () => {
-            this.resetToInitialState();
+        // Close modal button
+        const closeButton = document.getElementById('closeModal');
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                this.closeResultModal();
+            });
+        }
+
+        // Click outside modal to close
+        this.resultModal.addEventListener('click', (e) => {
+            if (e.target === this.resultModal) {
+                this.closeResultModal();
+            }
         });
     }
 
@@ -57,49 +69,45 @@ class App {
     async handleFormSubmission(formData) {
         console.log('Form submitted:', formData);
 
-        // Transition to loading state
-        this.transitionToLoading();
+        // Show loading modal
+        this.showLoadingModal();
 
         try {
             // Call API to generate prompt
             const response = await apiClient.generatePrompt(formData);
 
-            // Simulate minimum loading time for better UX (2 seconds)
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Simulate minimum loading time for better UX (1 second)
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
             // Stop loading animation
             this.stopLoadingTextRotation();
 
-            // Transition to result state
-            this.transitionToResult(response.generatedPrompt, formData);
+            // Hide loading modal
+            this.hideLoadingModal();
+
+            // Show result modal
+            this.showResultModal(response.generatedPrompt, formData);
 
         } catch (error) {
             console.error('Error generating prompt:', error);
             this.stopLoadingTextRotation();
 
-            // Show error and return to initial state
+            // Hide loading modal
+            this.hideLoadingModal();
+
+            // Show error
             alert(`Error: ${error.message}\n\nPlease try again.`);
-            this.transitionToInitial();
         }
     }
 
-    transitionToLoading() {
-        this.currentState = 'loading';
+    showLoadingModal() {
+        this.loadingModal.classList.remove('hidden');
+        this.startLoadingTextRotation();
+    }
 
-        // Hide initial state
-        this.states.initial.classList.add('state-transition-out');
-
-        setTimeout(() => {
-            this.states.initial.classList.add('hidden');
-            this.states.initial.classList.remove('state-transition-out');
-
-            // Show loading state
-            this.states.loading.classList.remove('hidden');
-            this.states.loading.classList.add('state-transition-in');
-
-            // Start loading text rotation
-            this.startLoadingTextRotation();
-        }, 400);
+    hideLoadingModal() {
+        this.loadingModal.classList.add('hidden');
+        this.stopLoadingTextRotation();
     }
 
     startLoadingTextRotation() {
@@ -107,14 +115,8 @@ class App {
         this.loadingTextIndex = 0;
 
         this.loadingInterval = setInterval(() => {
-            loadingText.classList.add('loading-text-change');
-
-            setTimeout(() => {
-                this.loadingTextIndex = (this.loadingTextIndex + 1) % this.loadingTexts.length;
-                loadingText.textContent = this.loadingTexts[this.loadingTextIndex];
-                loadingText.classList.remove('loading-text-change');
-            }, 1000);
-
+            this.loadingTextIndex = (this.loadingTextIndex + 1) % this.loadingTexts.length;
+            loadingText.textContent = this.loadingTexts[this.loadingTextIndex];
         }, 2000);
     }
 
@@ -125,74 +127,20 @@ class App {
         }
     }
 
-    transitionToResult(generatedPrompt, formData) {
-        this.currentState = 'result';
-
+    showResultModal(generatedPrompt, formData) {
         // Set data for output handler
         outputHandler.setData(generatedPrompt, formData);
 
-        // Hide loading state
-        this.states.loading.classList.add('state-transition-out');
+        // Update textarea with generated prompt
+        const generatedPromptTextarea = document.getElementById('generatedPrompt');
+        generatedPromptTextarea.value = generatedPrompt;
 
-        setTimeout(() => {
-            this.states.loading.classList.add('hidden');
-            this.states.loading.classList.remove('state-transition-out', 'state-transition-in');
-
-            // Show result state
-            const generatedPromptTextarea = document.getElementById('generatedPrompt');
-            generatedPromptTextarea.value = generatedPrompt;
-
-            this.states.result.classList.remove('hidden');
-            this.states.result.classList.add('result-appear');
-        }, 400);
+        // Show modal
+        this.resultModal.classList.remove('hidden');
     }
 
-    transitionToInitial() {
-        this.currentState = 'initial';
-
-        // Hide loading state
-        this.states.loading.classList.add('state-transition-out');
-
-        setTimeout(() => {
-            this.states.loading.classList.add('hidden');
-            this.states.loading.classList.remove('state-transition-out', 'state-transition-in');
-
-            // Show initial state
-            this.states.initial.classList.remove('hidden');
-            this.states.initial.classList.add('state-transition-in');
-
-            setTimeout(() => {
-                this.states.initial.classList.remove('state-transition-in');
-            }, 400);
-        }, 400);
-    }
-
-    resetToInitialState() {
-        this.currentState = 'initial';
-
-        // Hide result state
-        this.states.result.classList.add('state-transition-out');
-
-        setTimeout(() => {
-            this.states.result.classList.add('hidden');
-            this.states.result.classList.remove('state-transition-out', 'result-appear');
-
-            // Show initial state
-            this.states.initial.classList.remove('hidden');
-            this.states.initial.classList.add('state-transition-in');
-
-            // Reset form
-            if (window.formHandler) {
-                formHandler.resetForm();
-            }
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            setTimeout(() => {
-                this.states.initial.classList.remove('state-transition-in');
-            }, 400);
-        }, 400);
+    closeResultModal() {
+        this.resultModal.classList.add('hidden');
     }
 }
 
